@@ -15,8 +15,13 @@ class ImageManager {
 public:
     ImageManager(Scene* playingScene);
     void drawBackground();
+    void drawChoicesButtons();
     
 private:
+    Size visibleSize;
+    Vec2 origin;
+    Sprite* buttons[4];
+    Sprite* questionScreen;
     Sprite* background;
     Scene* currentScene;
 };
