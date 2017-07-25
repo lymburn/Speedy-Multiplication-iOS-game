@@ -16,6 +16,7 @@ public:
     ImageManager(Scene* playingScene);
     void drawBackground();
     void drawChoicesButtons();
+    Size getButtonSize();
     
 private:
     Size visibleSize;

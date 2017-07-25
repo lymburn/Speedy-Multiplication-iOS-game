@@ -43,7 +43,10 @@ void ImageManager::drawChoicesButtons() {
     questionScreen->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height * 0.8 + origin.y));
     currentScene->addChild(questionScreen,1);
     
+}
 
+Size ImageManager::getButtonSize() {
+    return buttons[0]->getContentSize();
 }
 
 

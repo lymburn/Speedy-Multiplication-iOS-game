@@ -10,6 +10,7 @@
 #define PlayScene_hpp
 USING_NS_CC;
 #include <stdio.h>
+using namespace std;
 
 class PlayScene : public cocos2d::Scene {
 public:
@@ -22,6 +23,11 @@ public:
     void update(float);
     
 private:
+    void changeQuestionAndAnswers();
+    vector<Label*> answerLabels;
+    vector<Label*> questionLabels;
+    vector<Label*> questionLabels2;
+    Size buttonSize;
     bool gameStarted = false;
     bool gameEnded = false;
     int timeNumber = 0;
