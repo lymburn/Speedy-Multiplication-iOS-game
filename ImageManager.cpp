@@ -39,14 +39,25 @@ void ImageManager::drawChoicesButtons() {
     }
     
     questionScreen = Sprite::create("sprites/button.png");
-    questionScreen->setScale(3, 1.8);
+    questionScreen->setScale(2.7, 1.8);
     questionScreen->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height * 0.8 + origin.y));
     currentScene->addChild(questionScreen,1);
     
 }
 
+void ImageManager::drawCar() {
+    car = Sprite::create("sprites/car.png");
+    car->setPosition(Vec2(visibleSize.width * 0.2 + origin.x, visibleSize.height * 0.1 + origin.y));
+    car->setScale(0.3,0.3);
+    currentScene->addChild(car,1);
+}
+
 Size ImageManager::getButtonSize() {
     return buttons[0]->getContentSize();
+}
+
+Sprite* ImageManager::getQuestionScreen() {
+    return questionScreen;
 }
 
 

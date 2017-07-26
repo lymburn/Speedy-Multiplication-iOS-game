@@ -20,9 +20,8 @@ public:
     void createFirstQuestion();
     void createFirstAnswers();
     void changeQuestionAndAnswer();
-    vector<Label*>getAnswerLabels();
-    vector<Label*>getQuestionLabels();
-    vector<Label*>getQuestionLabels2();
+    int getCorrectQuadrant();
+
 private:
     Size visibleSize;
     Vec2 origin;
@@ -30,6 +29,7 @@ private:
     int secondNum;
     int product;
     int ans2, ans3, ans4;
+    int quadrant;
     vector<Label*> answerLabels;
     vector<Label*> questionLabels;
     vector<Label*> questionLabels2;

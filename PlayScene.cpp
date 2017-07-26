@@ -32,10 +32,10 @@ bool PlayScene::init()
     auto ImageCreator = new ImageManager(this);
     ImageCreator->drawBackground();
     ImageCreator->drawChoicesButtons();
+    ImageCreator->drawCar();
     
     auto TextCreator = new TextManager(this);
     TextCreator->createCountDown();
-    TextCreator->writeTimeLabel();
     
     //Numbers
     auto NumberManager = new NumberGenerator(this);
@@ -43,6 +43,7 @@ bool PlayScene::init()
     NumberManager->createFirstAnswers();
     
     //Pressing the 4 buttons
+    auto questionScreen = ImageCreator->getQuestionScreen(); //Use screen to have callback and prevent double tapping on the buttons
     buttonSize = ImageCreator->getButtonSize();
     auto buttonListener = EventListenerTouchOneByOne::create();
     buttonListener->setSwallowTouches(true);
@@ -51,17 +52,27 @@ bool PlayScene::init()
     };
     
     buttonListener->onTouchEnded = [=](Touch* touch, Event* event) {
-        //In order of top left, top right, bottom right, bottom left
-        if ((touch->getLocation().x >= visibleSize.width*0.3 - buttonSize.width/2 + origin.x) && (touch->getLocation().x <= visibleSize.width*0.3 + origin.x + buttonSize.width/2) && (touch->getLocation().y >= visibleSize.height*0.55 - buttonSize.height/2 + origin.y) && (touch->getLocation().y <= visibleSize.height*0.55 + buttonSize.height/2 + origin.y)) {
-            NumberManager->changeQuestionAndAnswer();
-        } else if ((touch->getLocation().x >= visibleSize.width*0.7 - buttonSize.width/2 + origin.x) && (touch->getLocation().x <= visibleSize.width*0.7 + origin.x + buttonSize.width/2) && (touch->getLocation().y >= visibleSize.height*0.55 - buttonSize.height/2 + origin.y) && (touch->getLocation().y <= visibleSize.height*0.55 + buttonSize.height/2 + origin.y)) {
-            log ("touch top right");
-        } else if ((touch->getLocation().x >= visibleSize.width*0.7 - buttonSize.width/2 + origin.x) && (touch->getLocation().x <= visibleSize.width*0.7 + origin.x + buttonSize.width/2) && (touch->getLocation().y >= visibleSize.height*0.35 - buttonSize.height/2 + origin.y) && (touch->getLocation().y <= visibleSize.height*0.35 + buttonSize.height/2 + origin.y)) {
-            log ("touch bottom right");
-        } else if ((touch->getLocation().x >= visibleSize.width*0.3 - buttonSize.width/2 + origin.x) && (touch->getLocation().x <= visibleSize.width*0.3 + origin.x + buttonSize.width/2) && (touch->getLocation().y >= visibleSize.height*0.35 - buttonSize.height/2 + origin.y) && (touch->getLocation().y <= visibleSize.height*0.35 + buttonSize.height/2 + origin.y)) {
-            log("touch bottom left");
+        if (tapped == false && gameStarted) {
+            //In order of top left, top right, bottom right, bottom left (quadrant 0, 1, 2, 3)
+            //If touch corresponds to the quadrant with the correct answer, moves on to the next answer. Else, notify the user and tells them to retry.
+            if ((touch->getLocation().x >= visibleSize.width*0.3 - buttonSize.width/2 + origin.x) && (touch->getLocation().x <= visibleSize.width*0.3 + origin.x + buttonSize.width/2) && (touch->getLocation().y >= visibleSize.height*0.55 - buttonSize.height/2 + origin.y) && (touch->getLocation().y <= visibleSize.height*0.55 + buttonSize.height/2 + origin.y)) {
+                if (NumberManager->getCorrectQuadrant() == 0) {
+                    NumberManager->changeQuestionAndAnswer();
+                }
+            } else if ((touch->getLocation().x >= visibleSize.width*0.7 - buttonSize.width/2 + origin.x) && (touch->getLocation().x <= visibleSize.width*0.7 + origin.x + buttonSize.width/2) && (touch->getLocation().y >= visibleSize.height*0.55 - buttonSize.height/2 + origin.y) && (touch->getLocation().y <= visibleSize.height*0.55 + buttonSize.height/2 + origin.y)) {
+                if (NumberManager->getCorrectQuadrant() == 1) {
+                    NumberManager->changeQuestionAndAnswer();
+                }
+            } else if ((touch->getLocation().x >= visibleSize.width*0.7 - buttonSize.width/2 + origin.x) && (touch->getLocation().x <= visibleSize.width*0.7 + origin.x + buttonSize.width/2) && (touch->getLocation().y >= visibleSize.height*0.35 - buttonSize.height/2 + origin.y) && (touch->getLocation().y <= visibleSize.height*0.35 + buttonSize.height/2 + origin.y)) {
+                if (NumberManager->getCorrectQuadrant() == 2) {
+                    NumberManager->changeQuestionAndAnswer();
+                }
+            } else if ((touch->getLocation().x >= visibleSize.width*0.3 - buttonSize.width/2 + origin.x) && (touch->getLocation().x <= visibleSize.width*0.3 + origin.x + buttonSize.width/2) && (touch->getLocation().y >= visibleSize.height*0.35 - buttonSize.height/2 + origin.y) && (touch->getLocation().y <= visibleSize.height*0.35 + buttonSize.height/2 + origin.y)) {
+                if (NumberManager->getCorrectQuadrant() == 3) {
+                    NumberManager->changeQuestionAndAnswer();
+                }
+            }
         }
-        
     };
     
     Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(buttonListener, this);
@@ -83,6 +94,3 @@ void PlayScene::update(float delta) {
     }
 }
 
-void PlayScene::changeQuestionAndAnswers() {
-    
-}

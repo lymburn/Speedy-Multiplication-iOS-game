@@ -63,19 +63,15 @@ void NumberGenerator::createFirstAnswers() {
     auto origin = Director::getInstance()->getVisibleOrigin();
     
     ans2 = product + rand()%19 + 1;
-    ans3 = product + rand()%3 + 2;
+    ans3 = rand()%165;
     ans4 = rand()%165;
-    
-    if (ans4 == product) {
-        ans4 + rand()%10 + 3; //Prevent have same answer twice
-    }
     
     answerLabels.at(product)->setVisible(true); //Answer
     answerLabels.at(ans2)->setVisible(true); //Answer 2
     answerLabels.at(ans3)->setVisible(true); //Answer 3
     answerLabels.at(ans4)->setVisible(true); //Answer 4
 
-    int quadrant = rand()%4; //Which quadrant the answer will be in
+    quadrant = rand()%4; //Which quadrant the answer will be in
     
     if (quadrant == 0) {
         //Top left
@@ -102,17 +98,6 @@ void NumberGenerator::createFirstAnswers() {
         answerLabels.at(ans3)->setPosition(Vec2(visibleSize.width*0.3 + origin.x, visibleSize.height*0.55 + origin.y));
         answerLabels.at(ans4)->setPosition((Vec2(visibleSize.width*0.7 + origin.x, visibleSize.height*0.35 + origin.y)));
     }
-}
-vector<Label*> NumberGenerator::getAnswerLabels() {
-    return answerLabels;
-}
-
-vector<Label*> NumberGenerator::getQuestionLabels() {
-    return questionLabels;
-}
-
-vector<Label*> NumberGenerator::getQuestionLabels2() {
-    return questionLabels2;
 }
 
 void NumberGenerator::changeQuestionAndAnswer() {
@@ -128,7 +113,6 @@ void NumberGenerator::changeQuestionAndAnswer() {
     answerLabels.at(ans4)->setVisible(false);
     
     //New question numbers
-    srand(time(NULL));
     firstNum = rand()%13;
     secondNum = rand()%13;
     product = firstNum * secondNum;
@@ -140,8 +124,8 @@ void NumberGenerator::changeQuestionAndAnswer() {
     
     //New answers
     ans2 = product + rand()%10 + 1;
-    ans3 = rand()%product; //lower half or product
-    ans4 = rand()%165; //upper half
+    ans3 = rand()%165;
+    ans4 = rand()%165;
     
     if (ans4 == product) {
         if (ans4++ != ans3) {
@@ -156,7 +140,7 @@ void NumberGenerator::changeQuestionAndAnswer() {
     answerLabels.at(ans3)->setVisible(true); //Answer 3
     answerLabels.at(ans4)->setVisible(true); //Answer 4
     
-    int quadrant = rand()%4; //Which quadrant the answer will be in
+    quadrant = rand()%4; //Which quadrant the answer will be in
     
     if (quadrant == 0) {
         //Top left
@@ -183,5 +167,8 @@ void NumberGenerator::changeQuestionAndAnswer() {
         answerLabels.at(ans3)->setPosition(Vec2(visibleSize.width*0.3 + origin.x, visibleSize.height*0.55 + origin.y));
         answerLabels.at(ans4)->setPosition((Vec2(visibleSize.width*0.7 + origin.x, visibleSize.height*0.35 + origin.y)));
     }
+}
 
+int NumberGenerator::getCorrectQuadrant() {
+    return quadrant;
 }

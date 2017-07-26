@@ -23,11 +23,8 @@ public:
     void update(float);
     
 private:
-    void changeQuestionAndAnswers();
-    vector<Label*> answerLabels;
-    vector<Label*> questionLabels;
-    vector<Label*> questionLabels2;
     Size buttonSize;
+    bool tapped = false;
     bool gameStarted = false;
     bool gameEnded = false;
     int timeNumber = 0;

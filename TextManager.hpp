@@ -16,7 +16,6 @@ class TextManager {
 public:
     TextManager(Scene* playingScene);
     void writeTitleAndTap();
-    void writeTimeLabel();
     void getTimeLabel();
     void createCountDown();
 private:

@@ -38,14 +38,10 @@ void TextManager::writeTitleAndTap() {
 
 void TextManager::createCountDown() {
     ActionPerformer PerformActions;
-    auto number = Label::createWithTTF("3", "fonts/foo.ttf", 10);
+    auto number = Label::createWithTTF("3", "fonts/foo.ttf", 16);
     number->setPosition(Vec2(origin.x + visibleSize.width/2, origin.y + visibleSize.height*0.2));
+    number->setTextColor(Color4B::BLACK);
     currentScene->addChild(number,1);
     PerformActions.countDown(number);
 }
 
-void TextManager::writeTimeLabel() {
-    timeLabel = Label::createWithTTF("Time: ", "fonts/foo.ttf", 12);
-    timeLabel->setPosition(Vec2(visibleSize.width*0.7 + origin.x, origin.y + timeLabel->getContentSize().height));
-    currentScene->addChild(timeLabel, 1);
-}

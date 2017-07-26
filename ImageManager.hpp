@@ -16,6 +16,8 @@ public:
     ImageManager(Scene* playingScene);
     void drawBackground();
     void drawChoicesButtons();
+    void drawCar();
+    Sprite* getQuestionScreen();
     Size getButtonSize();
     
 private:
@@ -24,6 +26,7 @@ private:
     Sprite* buttons[4];
     Sprite* questionScreen;
     Sprite* background;
+    Sprite* car;
     Scene* currentScene;
 };
 
