@@ -28,6 +28,8 @@ bool DeathScene::init()
     ImageCreator->drawBackground();
     ImageCreator->drawFlag();
     ImageCreator->drawMovedCar();
+    ImageCreator->drawReplay();
+    
     
     auto TextCreator = new TextManager(this);
     TextCreator->writeResults();

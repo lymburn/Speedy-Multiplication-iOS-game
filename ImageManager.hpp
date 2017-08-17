@@ -21,6 +21,7 @@ public:
     void drawFlag();
     void drawCheckMark();
     void drawCross();
+    void drawReplay();
     Sprite* getCheckMark();
     Sprite* getCross();
     Sprite* getQuestionScreen();

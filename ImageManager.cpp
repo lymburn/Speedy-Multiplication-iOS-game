@@ -8,6 +8,7 @@
 
 #include "ImageManager.hpp"
 #include "ActionPerformer.hpp"
+#include "PlayScene.hpp"
 ImageManager::ImageManager(Scene* playingScene) {
     currentScene = playingScene;
     visibleSize = Director::getInstance()->getVisibleSize();
@@ -81,6 +82,27 @@ void ImageManager::drawCross() {
     cross->setScale(1.5, 1.5);
     cross->setVisible(false);
     currentScene->addChild(cross,1);
+}
+
+void ImageManager::drawReplay() {
+    //Replay button
+    auto replayButton = Sprite::create("sprites/return.png");
+    replayButton->setPosition(Vec2(origin.x + visibleSize.width/2, origin.y + visibleSize.height*0.35));
+    replayButton->setScale(2, 2);
+    auto touchListener = EventListenerTouchOneByOne::create();
+    touchListener->onTouchBegan = [=](Touch* touch, Event* event) -> bool {
+        
+        auto bounds = event->getCurrentTarget()->getBoundingBox();
+        
+        if (bounds.containsPoint(touch->getLocation())){
+            auto playScene = PlayScene::create();
+            Director::getInstance()->replaceScene(playScene);
+        }
+        return true;
+    };
+    
+    Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(touchListener,replayButton);
+    currentScene->addChild(replayButton, 1);
 }
 
 Sprite* ImageManager::getCheckMark() {

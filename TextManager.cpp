@@ -75,9 +75,9 @@ void TextManager::writeResults() {
     timeLabel->setPosition(Vec2(visibleSize.width*0.15 + origin.x, visibleSize.height*0.65 + origin.y));
     timeNumber->setPosition(Vec2(visibleSize.width*0.47 + origin.x, visibleSize.height*0.65 + origin.y));
     accuracy->setAnchorPoint(Vec2(0,0.5));
-    accuracy->setPosition(Vec2(visibleSize.width*0.15 + origin.x, visibleSize.height*0.5 + origin.y));
-    accuracyNum->setPosition(Vec2(visibleSize.width*0.75 + origin.x, visibleSize.height*0.5 + origin.y));
-    percent->setPosition(Vec2(visibleSize.width*0.8 + percent->getContentSize().width + origin.x, visibleSize.height*0.5 + origin.y));
+    accuracy->setPosition(Vec2(visibleSize.width*0.15 + origin.x, visibleSize.height*0.55 + origin.y));
+    accuracyNum->setPosition(Vec2(visibleSize.width*0.72 + origin.x, visibleSize.height*0.55 + origin.y));
+    percent->setPosition(Vec2(visibleSize.width*0.77 + percent->getContentSize().width + origin.x, visibleSize.height*0.55 + origin.y));
     
     currentScene->addChild(congrats);
     currentScene->addChild(timeLabel,1);

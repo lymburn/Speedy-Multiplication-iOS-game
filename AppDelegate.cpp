@@ -1,5 +1,6 @@
 #include "AppDelegate.h"
 #include "TitleScene.hpp"
+#include "SimpleAudioEngine.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -92,7 +93,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // create a scene. it's an autorelease object
     auto scene = TitleScene::createScene();
-
+    auto audio = CocosDenshion::SimpleAudioEngine::getInstance();
+    audio->playBackgroundMusic("music/Latin 1.wav", true);
+    audio->setBackgroundMusicVolume(0.25f);
     // run
     director->runWithScene(scene);
 

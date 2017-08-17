@@ -10,6 +10,9 @@
 #define PlayScene_hpp
 USING_NS_CC;
 #include <stdio.h>
+#include "SimpleAudioEngine.h"
+#include <iostream>
+using namespace std;
 
 class PlayScene : public cocos2d::Scene {
 public:
@@ -29,12 +32,13 @@ private:
     int timeNumber = 0;
     float timeFloat = 0;
     int numOfQuestions = 20;
-    int correct[19];
+    int correct[20];
     int wrongAnswers = 0;
     Sprite* car;
     Sprite* checkMark;
     Sprite* cross;
     UserDefault* def = UserDefault::getInstance();
+    CocosDenshion::SimpleAudioEngine* audio;
 };
 
 #endif /* PlayScene_hpp */
