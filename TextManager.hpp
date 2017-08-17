@@ -18,11 +18,17 @@ public:
     void writeTitleAndTap();
     void getTimeLabel();
     void createCountDown();
+    void writeNumOfQuestions(int numOfQuestions);
+    Label* getNumQuestions();
+    void writeResults();
 private:
     Size visibleSize;
     Vec2 origin;
     Scene* currentScene;
     Label* timeLabel;
+    Label* questionsRemaining;
+    Label* numQuestions;
+    UserDefault* def = UserDefault::getInstance();
 };
 
 #endif /* TextManager_hpp */

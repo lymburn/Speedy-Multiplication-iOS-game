@@ -10,7 +10,6 @@
 #define PlayScene_hpp
 USING_NS_CC;
 #include <stdio.h>
-using namespace std;
 
 class PlayScene : public cocos2d::Scene {
 public:
@@ -29,6 +28,13 @@ private:
     bool gameEnded = false;
     int timeNumber = 0;
     float timeFloat = 0;
+    int numOfQuestions = 20;
+    int correct[19];
+    int wrongAnswers = 0;
+    Sprite* car;
+    Sprite* checkMark;
+    Sprite* cross;
+    UserDefault* def = UserDefault::getInstance();
 };
 
 #endif /* PlayScene_hpp */

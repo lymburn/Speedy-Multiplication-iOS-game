@@ -20,6 +20,7 @@ public:
     void createFirstQuestion();
     void createFirstAnswers();
     void changeQuestionAndAnswer();
+    void clearAllNumbers();
     int getCorrectQuadrant();
 
 private:

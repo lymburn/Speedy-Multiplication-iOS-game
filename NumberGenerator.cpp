@@ -62,9 +62,22 @@ void NumberGenerator::createFirstAnswers() {
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
     
-    ans2 = product + rand()%19 + 1;
+    ans2 = product + rand()%10 + 1;
     ans3 = rand()%165;
     ans4 = rand()%165;
+    
+    //Prevent same answer twice
+    if (ans3 == product || ans3 == ans2) {
+        while (ans3 == product || ans3 == ans2) {
+            ans3 = rand()%165;
+        }
+    }
+    
+    if (ans4 == product || ans4 == ans3 || ans4 == ans2) {
+        while (ans4 == product || ans4 == ans3 || ans4 == ans2) {
+            ans4 = rand()%165;
+        }
+    }
     
     answerLabels.at(product)->setVisible(true); //Answer
     answerLabels.at(ans2)->setVisible(true); //Answer 2
@@ -127,11 +140,16 @@ void NumberGenerator::changeQuestionAndAnswer() {
     ans3 = rand()%165;
     ans4 = rand()%165;
     
-    if (ans4 == product) {
-        if (ans4++ != ans3) {
-            ans4++;
-        } else {
-            ans4 += 2;
+    //Prevent same answers twice
+    if (ans3 == product || ans3 == ans2) {
+        while (ans3 == product || ans3 == ans2) {
+            ans3 = rand()%165;
+        }
+    }
+    
+    if (ans4 == product || ans4 == ans3 || ans4 == ans2) {
+        while (ans4 == product || ans4 == ans3 || ans4 == ans2) {
+            ans4 = rand()%165;
         }
     }
     
@@ -167,6 +185,15 @@ void NumberGenerator::changeQuestionAndAnswer() {
         answerLabels.at(ans3)->setPosition(Vec2(visibleSize.width*0.3 + origin.x, visibleSize.height*0.55 + origin.y));
         answerLabels.at(ans4)->setPosition((Vec2(visibleSize.width*0.7 + origin.x, visibleSize.height*0.35 + origin.y)));
     }
+}
+void NumberGenerator::clearAllNumbers() {
+    //Clear all numbers when game is over
+    questionLabels.at(firstNum)->setVisible(false);
+    questionLabels2.at(secondNum)->setVisible(false);
+    answerLabels.at(product)->setVisible(false);
+    answerLabels.at(ans2)->setVisible(false);
+    answerLabels.at(ans3)->setVisible(false);
+    answerLabels.at(ans4)->setVisible(false);
 }
 
 int NumberGenerator::getCorrectQuadrant() {

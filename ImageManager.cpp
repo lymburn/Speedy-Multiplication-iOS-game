@@ -7,6 +7,7 @@
 //
 
 #include "ImageManager.hpp"
+#include "ActionPerformer.hpp"
 ImageManager::ImageManager(Scene* playingScene) {
     currentScene = playingScene;
     visibleSize = Director::getInstance()->getVisibleSize();
@@ -47,9 +48,47 @@ void ImageManager::drawChoicesButtons() {
 
 void ImageManager::drawCar() {
     car = Sprite::create("sprites/car.png");
-    car->setPosition(Vec2(visibleSize.width * 0.2 + origin.x, visibleSize.height * 0.1 + origin.y));
-    car->setScale(0.3,0.3);
+    car->setPosition(Vec2(visibleSize.width * 0.22 + origin.x, visibleSize.height * 0.13 + origin.y));
+    car->setScale(0.5,0.5);
     currentScene->addChild(car,1);
+}
+
+void ImageManager::drawMovedCar() {
+    car = Sprite::create("sprites/car.png");
+    car->setPosition(Vec2(visibleSize.width * 0.66 + origin.x, visibleSize.height * 0.13 + origin.y));
+    car->setScale(0.5,0.5);
+    currentScene->addChild(car,1);
+}
+
+void ImageManager::drawFlag() {
+    flag = Sprite::create("sprites/flag.png");
+    flag->setScale(1.5, 1.5);
+    flag->setPosition(Vec2(visibleSize.width*0.8 + origin.x, visibleSize.height * 0.132 + origin.y));
+    currentScene->addChild(flag,1);
+}
+
+void ImageManager::drawCheckMark() {
+    checkmark = Sprite::create("sprites/checkmark.png");
+    checkmark->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height*0.68 + origin.y));
+    checkmark->setScale(1.5,1.5);
+    checkmark->setVisible(false);
+    currentScene->addChild(checkmark,1);
+}
+
+void ImageManager::drawCross() {
+    cross = Sprite::create("sprites/cross.png");
+    cross->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height*0.68 + origin.y));
+    cross->setScale(1.5, 1.5);
+    cross->setVisible(false);
+    currentScene->addChild(cross,1);
+}
+
+Sprite* ImageManager::getCheckMark() {
+    return checkmark;
+}
+
+Sprite* ImageManager::getCross() {
+    return cross;
 }
 
 Size ImageManager::getButtonSize() {
@@ -59,5 +98,11 @@ Size ImageManager::getButtonSize() {
 Sprite* ImageManager::getQuestionScreen() {
     return questionScreen;
 }
+
+Sprite* ImageManager::getCar() {
+    return car;
+}
+
+
 
 

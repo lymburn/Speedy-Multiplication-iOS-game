@@ -17,8 +17,15 @@ public:
     void drawBackground();
     void drawChoicesButtons();
     void drawCar();
+    void drawMovedCar();
+    void drawFlag();
+    void drawCheckMark();
+    void drawCross();
+    Sprite* getCheckMark();
+    Sprite* getCross();
     Sprite* getQuestionScreen();
     Size getButtonSize();
+    Sprite* getCar();
     
 private:
     Size visibleSize;
@@ -27,6 +34,9 @@ private:
     Sprite* questionScreen;
     Sprite* background;
     Sprite* car;
+    Sprite* flag;
+    Sprite* checkmark;
+    Sprite* cross;
     Scene* currentScene;
 };
 

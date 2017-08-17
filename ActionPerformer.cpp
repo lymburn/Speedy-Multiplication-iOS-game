@@ -20,3 +20,4 @@ void ActionPerformer::countDown(Label* target) {
     auto seq = Sequence::create(DelayTime::create(1), CallFunc::create([=]() {target->setString("2");}), DelayTime::create(1), CallFunc::create([=]() {target->setString("1");}), DelayTime::create(1), CallFunc::create([=]() {target->setString("START!");}), DelayTime::create(0.5), CallFunc::create([=]() {target->setVisible(false);}), NULL);
     target->runAction(seq);
 }
+
