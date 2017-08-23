@@ -2,6 +2,7 @@
 
 Note: The game assets are not available.
 DEMO: https://youtu.be/a18N8bkUGNw
+GAME: https://itunes.apple.com/ca/app/speedy-multiplication/id1272976353?mt=8
 
 Speedy Multiplication is my 2nd iOS game made from Cocos2d-x game engine. After finishing Color Chase, I still had some extra time left in my summer break and wanted to make another game. However, I was rather occupied with family vacations, looking for housing, and spending time with friends. Therefore, I had to scope out a simple project that I could finish within 1-2 weeks.
 
