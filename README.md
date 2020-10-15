@@ -1,7 +1,8 @@
 # Speedy Multiplication
 
-Note: The game assets are not available.
-App Store: https://itunes.apple.com/ca/app/speedy-multiplication/id1272976353?mt=8
+(Removed from App Store since it's outdated)
+
+~~App Store: https://itunes.apple.com/ca/app/speedy-multiplication/id1272976353?mt=8~~
 
 DEMO:
 
